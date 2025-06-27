@@ -302,3 +302,18 @@ def test_spectral_factor_jrc_supplied_ambiguous():
     with pytest.raises(ValueError, match='No valid input provided'):
         spectrum.spectral_factor_jrc(1.0, 0.8, module_type=None,
                                      coefficients=None)
+@pytest.mark.parametrize("module_type,expected", [
+    ('cdte', np.array([0.990364, 0.999809, 1.01348, 0.992724, 0.959229, 0.972377])),
+    ('monosi', np.array([1.00098, 0.971769, 0.98771, 1.0163, 1.0221, 1.01151])),
+    ('cigs', np.array([1.00721, 0.959666, 0.975684, 1.02841, 1.0537, 1.0319])),
+    ('asi', np.array([0.979633, 1.04674, 1.05175, 0.950219, 0.868163, 0.921484])),
+])
+def test_spectral_factor_polo(module_type, expected):
+    pws = np.array([0.96, 0.96, 1.85, 1.88, 0.66, 0.66])
+    aods = np.array([0.085, 0.085, 0.16, 0.19, 0.088, 0.088])
+    ams = np.array([1.34, 1.34, 2.2, 2.2, 2.6, 2.6])
+    aois = np.array([46.0, 76.0, 74.0, 28.0, 24.0, 55.0])
+    altitude=500
+    out = spectrum.spectral_factor_polo(pws, ams, aods, aois, altitude, 
+                                          module_type=module_type)
+    assert np.allclose(expected, out, atol=1e-8)
