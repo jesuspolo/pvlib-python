@@ -15,6 +15,7 @@ Spectrum
    spectrum.spectral_factor_sapm
    spectrum.spectral_factor_pvspec
    spectrum.spectral_factor_jrc
+   spectrum.spectral_factor_polo
    spectrum.sr_to_qe
    spectrum.qe_to_sr
    spectrum.average_photon_energy
