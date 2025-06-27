@@ -37,6 +37,8 @@ Enhancements
 * Use `Horner's Method <https://en.wikipedia.org/wiki/Horner%27s_method>`_
   to evaluate polynomials in :py:func:`~pvlib.irradiance.disc`, may
   decrease runtime by 20%. (:issue:`1180`, :pull:`1183`)
+* Added a function: py:func:'pvlib.spectrum.spectral_factor_polo' to estimate spectral
+  mismatch modifiers for BIPV in facades (:pull:'2491')
 
 Bug fixes
 ~~~~~~~~~
